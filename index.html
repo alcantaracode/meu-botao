@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#ffffff">
+<meta name="description" content="Um botão que alterna entre vermelho e verde.">
+<link rel="manifest" href="manifest.json">
+<title>Meu Botão</title>
+<style>
+*{box-sizing:border-box} html,body{margin:0;width:100%;height:100%;font-family:system-ui,sans-serif}
+body{display:grid;place-items:center;background:#fff}
+button{width: min(48vw,190px);height:min(48vw,190px);border:0;border-radius:50%;background:#e53935;box-shadow:0 8px 22px #0002;touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+button.green{background:#2e9d50}
+button:focus-visible{outline:4px solid #222;outline-offset:8px}
+</style>
+</head>
+<body>
+<button id="toggle" aria-label="Alternar botão" aria-pressed="false"></button>
+<script>
+const button=document.querySelector('#toggle');
+button.addEventListener('click',()=>{
+ const green=button.classList.toggle('green');
+ button.setAttribute('aria-pressed',String(green));
+});
+if('serviceWorker' in navigator) window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js'));
+</script>
+</body>
+</html>
